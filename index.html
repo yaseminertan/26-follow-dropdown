@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- <h2>Cool</h2> <h2>Cool</h2> -->
     <nav class="top">
         <div class="dropdownBackground">
           <span class="arrow"></span>
@@ -78,6 +79,7 @@
 <script>
     const navigation=document.querySelector('.nav');
     const listItems=document.querySelectorAll('li');
+    const backWhite=document.querySelector('.dropdownBackground');
 
     listItems.forEach(item => {
         item.addEventListener('mouseenter',enter);
@@ -86,9 +88,29 @@
 
     function enter(){
         this.classList.add('trigger-enter', 'trigger-enter-active');
+        backWhite.classList.add('open');
+        
+        const menu=this.querySelector('.dropdown');
+        const backValues={
+            width:menu.getBoundingClientRect().width,
+            height:menu.getBoundingClientRect().height,
+            top:menu.getBoundingClientRect().top,
+            left:menu.getBoundingClientRect().left
+        };
+        const nav=document.querySelector('nav');
+        const navValues={
+            top:nav.getBoundingClientRect().top,
+            left:nav.getBoundingClientRect().left
+        }
+        
+        backWhite.style.setProperty('width',`${backValues.width}px`);
+        backWhite.style.setProperty('height',`${backValues.height}px`);
+        backWhite.style.setProperty('top',`${backValues.top-navValues.top}px`);
+        backWhite.style.setProperty('left',`${backValues.left-navValues.left}px`);
     }
     function leave(){
         this.classList.remove('trigger-enter', 'trigger-enter-active');
+        backWhite.classList.remove('open');
     }
 </script>
 <style>
