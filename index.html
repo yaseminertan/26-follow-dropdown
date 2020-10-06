@@ -16,7 +16,6 @@
             <a href="#">About Me</a>
             <div class="dropdown dropdown1">
               <div class="bio">
-                <img src="https://logo.clearbit.com/wesbos.com">
                 <p>Wes Bos sure does love web development. He teaches things like JavaScript, CSS and BBQ. Wait. BBQ isn't part of web development. It should be though!</p>
               </div>
             </div>
@@ -77,14 +76,29 @@
 </body>
 </html>
 <script>
+    const navigation=document.querySelector('.nav');
+    const listItems=document.querySelectorAll('li');
 
+    listItems.forEach(item => {
+        item.addEventListener('mouseenter',enter);
+        item.addEventListener('mouseleave',leave);
+    });
+
+    function enter(){
+        this.classList.add('trigger-enter', 'trigger-enter-active');
+    }
+    function leave(){
+        this.classList.remove('trigger-enter', 'trigger-enter-active');
+    }
 </script>
 <style>
   nav {
     position: relative;
     perspective: 600px;
   }
-
+  body{
+      background-color: peru;
+  }
   .cool > li > a {
     color: yellow;
     text-decoration: none;
